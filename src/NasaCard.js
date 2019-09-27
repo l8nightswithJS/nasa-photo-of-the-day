@@ -1,17 +1,24 @@
-import React from 'react';
-import useAxios from 'axios-hooks';
+import React, {useState, useEffect } from 'react';
 import "./styles.css";
+import Axios from 'axios';
  
-export default function NasaCard(props) {
-  const [{ data, loading, error }] = useAxios(
-    'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY'
-  )
+function NasaCard() {
+  const [data, setData] = useState([])
   
+    useEffect(() => {
+      async function fetch(){
+        try{
+          const nasa = await Axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+            console.log(nasa);
+            setData(nasa.data);
+          }
+        catch(err){
+            console.log(err)
+          }
+      }
+      fetch()
+    },[]) 
     
-  if (loading) return <p>Loading...</p>
-  
-  if (error) return <p>Error!</p>
-  
   return (
     <div className="container" >
       <div className="pod-title">
@@ -19,12 +26,12 @@ export default function NasaCard(props) {
       </div>
 
       <div className="pod-img">
-        <img className="img" src={data.url} alt={data.title} />
+        <img className="img" src={data.url} alt={''} />
         <p>{data.explanation}</p>
       </div>
 
       <div className="footer">
-      <p>{data.date}, {console.log(data)}</p>
+      <p>{data.date}</p>
       </div>
     </div>
   
@@ -32,5 +39,5 @@ export default function NasaCard(props) {
     
 }
 
-
+export default NasaCard;
 
