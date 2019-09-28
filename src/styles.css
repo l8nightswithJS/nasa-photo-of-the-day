@@ -1,0 +1,32 @@
+.container {
+    max-width: 75%;
+    background-color: black;
+    color: white;
+    margin: 0 auto;
+}
+
+.header-container{
+    width: 100%;
+    background-color: black;
+    color: azure;
+    height: 80px;
+    margin: 0 auto;
+
+}
+
+img{
+    width: 70%;
+}
+
+p{
+    padding: 0 5px 0 5px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2%;
+}
+
+.footer{
+    background-color: darkslategray;
+    height: 100px;
+}
+
